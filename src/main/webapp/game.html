@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="@css/style.css" />
+    <title>Games</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="game.html">Games</a>
+        <a href="movie.html">Filmes</a>
+      </nav>
+    </header>
+    <h1>Jogos</h1>
+    <!--  get, post ok -->
+    <form method="post" action="/FTT-WEB-091/game">
+      <p>
+        <label for="game-name">Nome: </label
+        ><input type="text" id="game-name" name="game-name" required />
+      </p>
+      <p>
+        <label for="game-producer">Produtora: </label
+        ><input type="text" id="game-producer" name="game-producer" required />
+      </p>
+      <p>
+        <label for="game-genre">Gênero: </label
+        ><input type="text" id="game-genre" name="game-genre" required />
+      </p>
+      <p>
+        <label for="game-releaseDate">Data de Lançamento: </label
+        ><input type="date" id="game-releaseDate" name="game-releaseDate" required />
+      </p>
+      <input type="submit" />
+    </form>
+  </body>
+</html>
