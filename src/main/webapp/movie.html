@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Filmes</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="game.html">Games</a>
+        <a href="movie.html">Filmes</a>
+      </nav>
+    </header>
+    <h1>Filmes</h1>
+
+    <form method="post" action="/FTT-WEB-091/movie">
+      <p>
+        <label for="movie-name">Nome: </label
+        ><input type="text" id="movie-name" name="movie-name" required />
+      </p>
+      <p>
+        <label for="movie-producer">Produtora: </label
+        ><input type="text" id="movie-producer" name="movie-producer" required />
+      </p>
+      <p>
+        <label for="movie-genre">Gênero: </label
+        ><input type="text" id="movie-genre" name="movie-genre" required />
+      </p>
+      <p>
+        <label for="movie-releaseDate">Data de Lançamento: </label
+        ><input
+          type="date"
+          id="movie-releaseDate"
+          name="movie-releaseDate"
+          required
+        />
+      </p>
+      <input type="submit" />
+    </form>
+  </body>
 </html>
