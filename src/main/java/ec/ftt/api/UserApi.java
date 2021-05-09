@@ -22,10 +22,10 @@ import ec.ftt.model.User;
  * 
  */
 
-// TODO: PROJETO: CRIAR CRUD WEB + GRÁFICO PARA MAIS UMA TABELA COM MAIS CAMPOS PARA N1 2B
-// TODO: PROJETO: PROJETO INDIVIDUAL OU NO MÁXIMO EM DUPLAS (EM DUPLAS 2 TABELAS)
-// TODO: PROJETO: JavaScript Valina - CRUD em uma página - User "fetch"
-// TODO: PROJETO: Gerar gráfico com "Chart.js" https://www.chartjs.org/
+// TODO: PROJETO: CRIAR CRUD WEB + GRÃ�FICO PARA MAIS UMA TABELA COM MAIS CAMPOS PARA N1 2B
+// TODO: PROJETO: PROJETO INDIVIDUAL OU NO MÃ�XIMO EM DUPLAS (EM DUPLAS 2 TABELAS)
+// TODO: PROJETO: JavaScript Valina - CRUD em uma pÃ¡gina - User "fetch"
+// TODO: PROJETO: Gerar grÃ¡fico com "Chart.js" https://www.chartjs.org/
 // TODO: PROJETO: Trabalhar bem mensagens de erro da WEB API com try catch
 
 
@@ -60,7 +60,7 @@ public class UserApi extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setStatus(418); //200 - OK - Padrão (Default)
+		response.setStatus(418); //200 - OK - PadrÃ£o (Default)
 
 		String userId = request.getParameter("user-id");
 		
@@ -110,7 +110,7 @@ public class UserApi extends HttpServlet {
 		
 		System.out.println(u);
 		
-		response.getWriter().append(u.toString());
+		response.sendRedirect("FTT-WEB-091/index.html");
 		
 	}
 
@@ -132,7 +132,7 @@ public class UserApi extends HttpServlet {
 		
 		System.out.println(u);
 		
-		response.getWriter().append(u.toString());
+		response.sendRedirect("WEB-FTT-091/index.html");
 		
 		
 	}
@@ -143,22 +143,22 @@ public class UserApi extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// https://www.tutorialspoint.com/servlets/servlets-http-status-codes.htm
 		
-		// TODO Verificar se está enviando o parametro
-		// TODO Verificar se o parametro é null
-		// TODO Se o ID já foi apagado
-		// TODO Verificar se o ID não existe...
+		// TODO Verificar se estÃ¡ enviando o parametro
+		// TODO Verificar se o parametro Ã© null
+		// TODO Se o ID jÃ¡ foi apagado
+		// TODO Verificar se o ID nÃ£o existe...
 		// TODO Usar try cath para propagar erro appropriadamente...
-		// TODO क्या आप इस कोड को अपने जीवन की महिला को दिखाने की हिम्मत करेंगे ???
-		// TODO మీ జీవితంలోని స్త్రీకి ఈ కోడ్ చూపించడానికి మీకు ధైర్యం ఉందా ???
+		// TODO à¤•à¥�à¤¯à¤¾ à¤†à¤ª à¤‡à¤¸ à¤•à¥‹à¤¡ à¤•à¥‹ à¤…à¤ªà¤¨à¥‡ à¤œà¥€à¤µà¤¨ à¤•à¥€ à¤®à¤¹à¤¿à¤²à¤¾ à¤•à¥‹ à¤¦à¤¿à¤–à¤¾à¤¨à¥‡ à¤•à¥€ à¤¹à¤¿à¤®à¥�à¤®à¤¤ à¤•à¤°à¥‡à¤‚à¤—à¥‡ ???
+		// TODO à°®à±€ à°œà±€à°µà°¿à°¤à°‚à°²à±‹à°¨à°¿ à°¸à±�à°¤à±�à°°à±€à°•à°¿ à°ˆ à°•à±‹à°¡à±� à°šà±‚à°ªà°¿à°‚à°šà°¡à°¾à°¨à°¿à°•à°¿ à°®à±€à°•à±� à°§à±ˆà°°à±�à°¯à°‚ à°‰à°‚à°¦à°¾ ???
 		
 		
 		// Reference: https://www.tutorialspoint.com/servlets/servlets-http-status-codes.htm
 		// 
 		
-		response.setStatus(418); //200 - OK - Padrão (Default)
+		response.setStatus(418); //200 - OK - PadrÃ£o (Default)
 
 		if (request.getParameter("user-id") == null)
-			 response.sendError(407, "Informe o ID do usuário a ser retornado!!!" );
+			 response.sendError(407, "Informe o ID do usuÃ¡rio a ser retornado!!!" );
 		else {
 		Long userId = Long.valueOf(request.getParameter("user-id"));
 		
