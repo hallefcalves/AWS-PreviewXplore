@@ -71,6 +71,7 @@ public class GameApi extends HttpServlet  {
 		gameDao.addGame(u);
 
 		response.getWriter().append(u.toString());
+		response.sendRedirect("index.html");
 
 	}
 

@@ -70,6 +70,7 @@ public class MovieApi extends HttpServlet  {
 		movieDao.addMovie(u);
 
 		response.getWriter().append(u.toString());
+		response.sendRedirect("index.html");
 
 	}
 
