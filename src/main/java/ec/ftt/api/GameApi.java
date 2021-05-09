@@ -94,7 +94,7 @@ public class GameApi extends HttpServlet  {
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setStatus(418);
+		
 
 		if (request.getParameter("game-id") == null)
 			response.sendError(407, "Informe o ID do usuário a ser retornado!!!" );
@@ -106,7 +106,7 @@ public class GameApi extends HttpServlet  {
 			GameDao ud = new GameDao();
 
 			ud.deleteGame(gameId);
-
+			response.setStatus(200);
 			response.getWriter().append(request.getParameter("game-id") + " Game removido");
 		}
 	}

@@ -94,19 +94,20 @@ public class MovieApi extends HttpServlet  {
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setStatus(418);
+		
 
 		if (request.getParameter("movie-id") == null)
 			response.sendError(407, "Informe o ID do usuário a ser retornado!!!" );
 		else {
 			Long movieId = Long.valueOf(request.getParameter("movie-id"));
+			System.out.println(movieId);
 
 
 
 			MovieDao ud = new MovieDao();
 
 			ud.deleteMovie(movieId);
-
+			response.setStatus(200);
 			response.getWriter().append(request.getParameter("movie-id") + " Movie removido");
 		}
 	}

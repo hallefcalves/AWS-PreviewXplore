@@ -42,22 +42,15 @@ public class GameDao {
 		}
 	} 
 
+
 	public void deleteGame(Long id) {
-
-		Game game = new Game();
-		game.setId(id);
-
-		deleteGame(game);
-
-	}
-
-	public void deleteGame(Game game) {
 		try {
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("DELETE FROM ftt.USER WHERE ID=?");
+					.prepareStatement("DELETE FROM ftt.GAME WHERE ID=?");
 
-			preparedStatement.setLong(1, game.getId());
+			preparedStatement.setLong(1, id);
+			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -131,7 +124,7 @@ public class GameDao {
 
 		try {
 			PreparedStatement preparedStatement = connection.
-					prepareStatement("SELECT * from ftt.USER WHERE ID=?");
+					prepareStatement("SELECT * from ftt.GAME WHERE ID=?");
 
 			preparedStatement.setLong(1, game.getId());
 			ResultSet rs = preparedStatement.executeQuery();
