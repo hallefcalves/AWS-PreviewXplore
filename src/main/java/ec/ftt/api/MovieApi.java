@@ -60,7 +60,6 @@ public class MovieApi extends HttpServlet  {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Movie u = new Movie(
-				Long.parseLong(request.getParameter("movie-id")),
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),

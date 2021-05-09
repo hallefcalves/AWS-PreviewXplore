@@ -18,6 +18,13 @@ public class Movie {
 		setGenre(genre);
 		setReleaseDate(releaseDate);
 	}
+	public Movie(String name, String producer, String genre, String releaseDate) {
+		super();
+		setName(name);
+		setProducer(producer);
+		setGenre(genre);
+		setReleaseDate(releaseDate);
+	}
 
 	public long getId() {
 		return id;

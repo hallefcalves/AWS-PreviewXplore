@@ -18,6 +18,13 @@ public class Game {
 		setGenre(genre);
 		setReleaseDate(releaseDate);
 	}
+	public Game(String name, String producer, String genre, String releaseDate) {
+		super();
+		setName(name);
+		setProducer(producer);
+		setGenre(genre);
+		setReleaseDate(releaseDate);
+	}
 
 	public long getId() {
 		return id;
