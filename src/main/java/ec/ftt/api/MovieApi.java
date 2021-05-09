@@ -60,12 +60,12 @@ public class MovieApi extends HttpServlet  {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Movie u = new Movie(
+				Long.parseLong(request.getParameter("movie-id")),
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),
 				request.getParameter("movie-releaseDate")
 				);
-
 		MovieDao movieDao = new MovieDao();
 
 		movieDao.addMovie(u);
@@ -78,6 +78,7 @@ public class MovieApi extends HttpServlet  {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		Movie u = new Movie(
+				Long.parseLong(request.getParameter("movie-id")),
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),
@@ -94,19 +95,20 @@ public class MovieApi extends HttpServlet  {
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setStatus(418);
+		
 
 		if (request.getParameter("movie-id") == null)
 			response.sendError(407, "Informe o ID do usuário a ser retornado!!!" );
 		else {
 			Long movieId = Long.valueOf(request.getParameter("movie-id"));
+			System.out.println(movieId);
 
 
 
 			MovieDao ud = new MovieDao();
 
 			ud.deleteMovie(movieId);
-
+			response.setStatus(200);
 			response.getWriter().append(request.getParameter("movie-id") + " Movie removido");
 		}
 	}
