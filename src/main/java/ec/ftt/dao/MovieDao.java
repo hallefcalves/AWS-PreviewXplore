@@ -43,21 +43,13 @@ public class MovieDao {
 	} 
 
 	public void deleteMovie(Long id) {
-
-		Movie movie = new Movie();
-		movie.setId(id);
-
-		deleteMovie(movie);
-
-	}
-
-	public void deleteMovie(Movie movie) {
 		try {
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("DELETE FROM ftt.USER WHERE ID=?");
+					.prepareStatement("DELETE FROM ftt.MOVIE WHERE ID=?");
 
-			preparedStatement.setLong(1, movie.getId());
+			preparedStatement.setLong(1, id);
+			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -131,7 +123,7 @@ public class MovieDao {
 
 		try {
 			PreparedStatement preparedStatement = connection.
-					prepareStatement("SELECT * from ftt.USER WHERE ID=?");
+					prepareStatement("SELECT * from ftt.MOVIE WHERE ID=?");
 
 			preparedStatement.setLong(1, movie.getId());
 			ResultSet rs = preparedStatement.executeQuery();

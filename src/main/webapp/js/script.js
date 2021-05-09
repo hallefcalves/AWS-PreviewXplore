@@ -1,12 +1,34 @@
+const deleteGame = (id) => {
+  console.log(id)
+  const request = new XMLHttpRequest();
+  const url = "/FTT-WEB-091/game?game-id=" + id
+  request.open("DELETE", url, true);
+  request.send();
+  request.onload = function () {
+    document.location.reload(true);
+  }
+}
+const deleteMovie = (id) => {
+  console.log(id)
+  const request = new XMLHttpRequest();
+  const url = "/FTT-WEB-091/movie?movie-id=" + id
+  request.open("DELETE", url, true);
+  request.send();
+  request.onload = function () {
+    document.location.reload(true);
+  }
+
+}
+
 const request = new XMLHttpRequest();
 request.open("GET", "/FTT-WEB-091/game");
 
 request.onload = function () {
   const response = JSON.parse(this.responseText);
   console.log(JSON.parse(this.responseText));
-  
+
   const table = document.querySelector(".table-game");
-  for(let line of response){
+  for (let line of response) {
     var row = document.createElement("tr");
     var id = document.createElement("td");
     id.innerHTML = line.id;
@@ -23,6 +45,17 @@ request.onload = function () {
     var releaseDate = document.createElement("td");
     releaseDate.innerHTML = line.releaseDate;
     row.appendChild(releaseDate);
+    var action = document.createElement("td");
+    var d = document.createElement("button")
+    d.innerHTML = "Apagar"
+    d.classList.add("btn-danger");
+    d.classList.add("btn");
+    d.addEventListener("click", function () {
+      console.log("delete")
+      deleteGame(line.id)
+    })
+    action.appendChild(d)
+    row.appendChild(action)
     table.appendChild(row);
   }
   console.log(table)
@@ -40,9 +73,9 @@ requestMovie.open("GET", "/FTT-WEB-091/movie");
 requestMovie.onload = function () {
   const response = JSON.parse(this.responseText);
   console.log(JSON.parse(this.responseText));
-  
+
   const table = document.querySelector(".table-movie");
-  for(let line of response){
+  for (let line of response) {
     var row = document.createElement("tr");
     var id = document.createElement("td");
     id.innerHTML = line.id;
@@ -59,6 +92,18 @@ requestMovie.onload = function () {
     var releaseDate = document.createElement("td");
     releaseDate.innerHTML = line.releaseDate;
     row.appendChild(releaseDate);
+    var action = document.createElement("td");
+    var d = document.createElement("button")
+    d.innerHTML = "Apagar"
+    d.classList.add("btn-danger");
+    d.classList.add("btn");
+    d.addEventListener("click", function () {
+      console.log("delete")
+      deleteMovie(line.id)
+    })
+    action.appendChild(d)
+    row.appendChild(action)
+
     table.appendChild(row);
   }
   console.log(table)
