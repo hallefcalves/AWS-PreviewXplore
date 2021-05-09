@@ -10,8 +10,9 @@ public class Game {
 	public Game() {
 
 	}
-	public Game(String name, String producer, String genre, String releaseDate) {
+	public Game(Long id, String name, String producer, String genre, String releaseDate) {
 		super();
+		setId(id);
 		setName(name);
 		setProducer(producer);
 		setGenre(genre);

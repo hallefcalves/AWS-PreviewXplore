@@ -60,6 +60,7 @@ public class GameApi extends HttpServlet  {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Game u = new Game(
+				Long.parseLong(request.getParameter("game-id")),
 				request.getParameter("game-name"),
 				request.getParameter("game-producer"),
 				request.getParameter("game-genre"),
@@ -78,6 +79,7 @@ public class GameApi extends HttpServlet  {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		Game u = new Game(
+				Long.parseLong(request.getParameter("game-id")),
 				request.getParameter("game-name"),
 				request.getParameter("game-producer"),
 				request.getParameter("game-genre"),

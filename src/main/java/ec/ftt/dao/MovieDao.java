@@ -62,17 +62,17 @@ public class MovieDao {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("UPDATE ftt.MOVIE SET NAME=?, " 
 							+ "PRODUCER=?, " 
-							+ "GENRE=? " 
+							+ "GENRE=?, " 
 							+ "RELEASE_DATE=? " 
 							+ "WHERE ID=?");
 
 			preparedStatement.setString(1, movie.getName());
 			preparedStatement.setString(2, movie.getProducer());
 			preparedStatement.setString(3, movie.getGenre());
-			preparedStatement.setString(3, movie.getReleaseDate());
+			preparedStatement.setString(4, movie.getReleaseDate());
 
-			preparedStatement.setLong(4, movie.getId());
-
+			preparedStatement.setLong(5, movie.getId());
+			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -106,18 +106,11 @@ public class MovieDao {
 		return movieList;
 	} 
 
+
+
+
+
 	public Movie getMovieById(Long id) {
-
-		Movie movie = new Movie();
-		movie.setId(id);
-
-		return getMovieById(movie);
-
-	} // getUserById long
-
-
-
-	public Movie getMovieById(Movie movie) {
 
 		Movie movieOutput = new Movie();
 
@@ -125,15 +118,15 @@ public class MovieDao {
 			PreparedStatement preparedStatement = connection.
 					prepareStatement("SELECT * from ftt.MOVIE WHERE ID=?");
 
-			preparedStatement.setLong(1, movie.getId());
+			preparedStatement.setLong(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
-				movie.setId(rs.getLong("ID"));
-				movie.setName(rs.getString("NAME"));
-				movie.setProducer(rs.getString("PRODUCER"));
-				movie.setGenre(rs.getString("GENRE"));
-				movie.setReleaseDate(rs.getString("RELEASE_DATE"));
+				movieOutput.setId(rs.getLong("ID"));
+				movieOutput.setName(rs.getString("NAME"));
+				movieOutput.setProducer(rs.getString("PRODUCER"));
+				movieOutput.setGenre(rs.getString("GENRE"));
+				movieOutput.setReleaseDate(rs.getString("RELEASE_DATE"));
 
 			}
 		} catch (SQLException e) {
