@@ -60,12 +60,12 @@ public class MovieApi extends HttpServlet  {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Movie u = new Movie(
+				Long.parseLong(request.getParameter("movie-id")),
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),
 				request.getParameter("movie-releaseDate")
 				);
-
 		MovieDao movieDao = new MovieDao();
 
 		movieDao.addMovie(u);
@@ -78,6 +78,7 @@ public class MovieApi extends HttpServlet  {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		Movie u = new Movie(
+				Long.parseLong(request.getParameter("movie-id")),
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),

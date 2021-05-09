@@ -63,16 +63,16 @@ public class GameDao {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("UPDATE ftt.GAME SET NAME=?, " 
 							+ "PRODUCER=?, " 
-							+ "GENRE=? " 
+							+ "GENRE=?, " 
 							+ "RELEASE_DATE=? " 
 							+ "WHERE ID=?");
 
 			preparedStatement.setString(1, game.getName());
 			preparedStatement.setString(2, game.getProducer());
 			preparedStatement.setString(3, game.getGenre());
-			preparedStatement.setString(3, game.getReleaseDate());
+			preparedStatement.setString(4, game.getReleaseDate());
 
-			preparedStatement.setLong(4, game.getId());
+			preparedStatement.setLong(5, game.getId());
 
 			preparedStatement.executeUpdate();
 
@@ -107,18 +107,8 @@ public class GameDao {
 		return gameList;
 	} 
 
+
 	public Game getGameById(Long id) {
-
-		Game game = new Game();
-		game.setId(id);
-
-		return getGameById(game);
-
-	} // getUserById long
-
-
-
-	public Game getGameById(Game game) {
 
 		Game gameOutput = new Game();
 
@@ -126,15 +116,15 @@ public class GameDao {
 			PreparedStatement preparedStatement = connection.
 					prepareStatement("SELECT * from ftt.GAME WHERE ID=?");
 
-			preparedStatement.setLong(1, game.getId());
+			preparedStatement.setLong(1,id);
 			ResultSet rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
-				game.setId(rs.getLong("ID"));
-				game.setName(rs.getString("NAME"));
-				game.setProducer(rs.getString("PRODUCER"));
-				game.setGenre(rs.getString("GENRE"));
-				game.setReleaseDate(rs.getString("RELEASE_DATE"));
+				gameOutput.setId(rs.getLong("ID"));
+				gameOutput.setName(rs.getString("NAME"));
+				gameOutput.setProducer(rs.getString("PRODUCER"));
+				gameOutput.setGenre(rs.getString("GENRE"));
+				gameOutput.setReleaseDate(rs.getString("RELEASE_DATE"));
 
 			}
 		} catch (SQLException e) {

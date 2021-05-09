@@ -20,6 +20,39 @@ const deleteMovie = (id) => {
 
 }
 
+let localMovie = {}
+
+const updateMovie = (id) => {
+  console.log(id)
+  const request = new XMLHttpRequest();
+  const url = "/FTT-WEB-091/movie?movie-id=" + id
+  request.open("GET", url, true);
+  request.send();
+  request.onload = function () {
+    window.localStorage.setItem('localMovie', this.responseText);
+    window.location.href = "update-movie.html";
+  }
+  
+
+}
+
+let localGame = {}
+
+const updateGame = (id) => {
+  console.log(id)
+  const request = new XMLHttpRequest();
+  const url = "/FTT-WEB-091/game?game-id=" + id
+  request.open("GET", url, true);
+  request.send();
+  request.onload = function () {
+    console.log(this.responseText)
+    window.localStorage.setItem('localGame', this.responseText);
+    window.location.href = "update-game.html";
+  }
+  
+
+}
+
 const request = new XMLHttpRequest();
 request.open("GET", "/FTT-WEB-091/game");
 
@@ -55,6 +88,16 @@ request.onload = function () {
       deleteGame(line.id)
     })
     action.appendChild(d)
+    
+    var u = document.createElement("button")
+    u.innerHTML = "Editar"
+    u.classList.add("btn-warning");
+    u.classList.add("btn");
+    u.addEventListener("click", function () {
+      console.log("update")
+      updateGame(line.id)
+    })
+    action.appendChild(u)
     row.appendChild(action)
     table.appendChild(row);
   }
@@ -102,6 +145,16 @@ requestMovie.onload = function () {
       deleteMovie(line.id)
     })
     action.appendChild(d)
+
+    var u = document.createElement("button")
+    u.innerHTML = "Editar"
+    u.classList.add("btn-warning");
+    u.classList.add("btn");
+    u.addEventListener("click", function () {
+      console.log("update")
+      updateMovie(line.id)
+    })
+    action.appendChild(u)
     row.appendChild(action)
 
     table.appendChild(row);

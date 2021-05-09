@@ -10,8 +10,9 @@ public class Movie {
 	public Movie() {
 
 	}
-	public Movie(String name, String producer, String genre, String releaseDate) {
+	public Movie(Long id, String name, String producer, String genre, String releaseDate) {
 		super();
+		setId(id);
 		setName(name);
 		setProducer(producer);
 		setGenre(genre);
