@@ -1,6 +1,6 @@
 # lp3-n2
 
->Trabalho realizado por
+>Trabalho realizado por </br>
 Arthur RA: 081180004 </br>
 Hallef RA: 081180014 </br>
 Julia  RA: 081180019 </br>
