@@ -1,5 +1,7 @@
-# lp3-n1
+# lp3-n2
 
 >Trabalho realizado por
-Guilherme Sant'Anna - 081180012
-Kaian Tiago         - 081180022
+Arthur RA: 081180004
+Hallef RA: 081180014
+Julia  RA: 081180019
+Kaian  RA: 081180022
