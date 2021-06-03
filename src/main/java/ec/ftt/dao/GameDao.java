@@ -66,7 +66,7 @@ public class GameDao {
 							+ "GENRE=?, " 
 							+ "RELEASE_DATE=? " 
 							+ "WHERE ID=?");
-
+	        
 			preparedStatement.setString(1, game.getName());
 			preparedStatement.setString(2, game.getProducer());
 			preparedStatement.setString(3, game.getGenre());

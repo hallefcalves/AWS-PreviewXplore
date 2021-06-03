@@ -16,7 +16,8 @@ releaseDate.value = localGame.releaseDate
 
 const updateGame = () => {
     const request = new XMLHttpRequest();
-    const url = "/FTT-WEB-091/game?game-name=" + gameName.value + "&game-producer=" + producer.value + "&game-genre=" + genre.value + "&game-releaseDate=" + releaseDate.value + "&game-id=" + id.value;
+
+    const url = "/FTT-WEB-091/game?useUnicode=yes&characterEncoding=UTF-8&game-name=" + gameName.value + "&game-producer=" + producer.value + "&game-genre=" + genre.value + "&game-releaseDate=" + releaseDate.value + "&game-id=" + id.value;
     request.open("PUT", url, true);
     request.send();
     request.onload = function () {

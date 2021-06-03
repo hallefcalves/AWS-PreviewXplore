@@ -22,13 +22,6 @@ import ec.ftt.model.User;
  * 
  */
 
-// TODO: PROJETO: CRIAR CRUD WEB + GRÃ�FICO PARA MAIS UMA TABELA COM MAIS CAMPOS PARA N1 2B
-// TODO: PROJETO: PROJETO INDIVIDUAL OU NO MÃ�XIMO EM DUPLAS (EM DUPLAS 2 TABELAS)
-// TODO: PROJETO: JavaScript Valina - CRUD em uma pÃ¡gina - User "fetch"
-// TODO: PROJETO: Gerar grÃ¡fico com "Chart.js" https://www.chartjs.org/
-// TODO: PROJETO: Trabalhar bem mensagens de erro da WEB API com try catch
-
-
 @WebServlet("/user")
 public class UserApi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,30 +31,28 @@ public class UserApi extends HttpServlet {
      */
     public UserApi() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
 	 * @see Servlet#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.setStatus(418); //200 - OK - PadrÃ£o (Default)
-
+		
 		String userId = request.getParameter("user-id");
 		
 	    if(userId != null) {
@@ -100,8 +91,7 @@ public class UserApi extends HttpServlet {
 		User u = new User(
 				request.getParameter("user-id"),
 				request.getParameter("user-name"),
-				request.getParameter("user-email"),
-				request.getParameter("user-color")
+				request.getParameter("user-email")
 				);
 		
 		UserDao userDao = new UserDao();
@@ -118,13 +108,12 @@ public class UserApi extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Ajustar errors com try catch
+		
 		response.setContentType("application/json"); //mimeType - https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 		User u = new User(
 				request.getParameter("user-id"),
 				request.getParameter("user-name"),
-				request.getParameter("user-email"),
-				request.getParameter("user-color")
+				request.getParameter("user-email")
 				);
 		UserDao userDao = new UserDao();
 		
@@ -141,24 +130,10 @@ public class UserApi extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// https://www.tutorialspoint.com/servlets/servlets-http-status-codes.htm
-		
-		// TODO Verificar se estÃ¡ enviando o parametro
-		// TODO Verificar se o parametro Ã© null
-		// TODO Se o ID jÃ¡ foi apagado
-		// TODO Verificar se o ID nÃ£o existe...
-		// TODO Usar try cath para propagar erro appropriadamente...
-		// TODO à¤•à¥�à¤¯à¤¾ à¤†à¤ª à¤‡à¤¸ à¤•à¥‹à¤¡ à¤•à¥‹ à¤…à¤ªà¤¨à¥‡ à¤œà¥€à¤µà¤¨ à¤•à¥€ à¤®à¤¹à¤¿à¤²à¤¾ à¤•à¥‹ à¤¦à¤¿à¤–à¤¾à¤¨à¥‡ à¤•à¥€ à¤¹à¤¿à¤®à¥�à¤®à¤¤ à¤•à¤°à¥‡à¤‚à¤—à¥‡ ???
-		// TODO à°®à±€ à°œà±€à°µà°¿à°¤à°‚à°²à±‹à°¨à°¿ à°¸à±�à°¤à±�à°°à±€à°•à°¿ à°ˆ à°•à±‹à°¡à±� à°šà±‚à°ªà°¿à°‚à°šà°¡à°¾à°¨à°¿à°•à°¿ à°®à±€à°•à±� à°§à±ˆà°°à±�à°¯à°‚ à°‰à°‚à°¦à°¾ ???
 		
 		
-		// Reference: https://www.tutorialspoint.com/servlets/servlets-http-status-codes.htm
-		// 
-		
-		response.setStatus(418); //200 - OK - PadrÃ£o (Default)
-
 		if (request.getParameter("user-id") == null)
-			 response.sendError(407, "Informe o ID do usuÃ¡rio a ser retornado!!!" );
+			 response.sendError(407, "Informe o ID do usuário a ser retornado!!!" );
 		else {
 		Long userId = Long.valueOf(request.getParameter("user-id"));
 		

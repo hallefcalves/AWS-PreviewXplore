@@ -41,6 +41,7 @@ public class GameApi extends HttpServlet  {
 
 			Game game = gameDao.getGameById(id);
 			Gson gson = new Gson();
+		
 			response.getWriter().append(gson.toJson(game));
 
 		} else {
@@ -67,7 +68,10 @@ public class GameApi extends HttpServlet  {
 				);
 
 		GameDao gameDao = new GameDao();
-
+		
+		System.out.print(u.getName());
+		System.out.print("ããããã-------------------");
+		
 		gameDao.addGame(u);
 
 		response.sendRedirect("index.html");
@@ -86,6 +90,9 @@ public class GameApi extends HttpServlet  {
 				);
 		GameDao gameDao = new GameDao();
 
+		System.out.print(u.getName());
+		System.out.print("ããããã2-------------------");
+		
 		gameDao.updateGame(u);
 
 		response.getWriter().append(u.toString());

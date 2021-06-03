@@ -15,27 +15,19 @@ public class User {
 
 	private long id;
 	private String name,
-	               email,
-	               color;
+	               email;
 	
 	public User() {
 		
 	}
-	public User(String id, String name, String email, String color) {
+	public User(String id, String name, String email) {
 		super();
 		setId(id);
 		setName(name);
 		setEmail(email);
-		setColor(color);
+		//setColor(color);
 	}
 	
-	public User(long id, String name, String email, String color) {
-		super();
-		setId(id);
-		setName(name);
-		setEmail(email);
-		setColor(color);
-	}
 	/**
 	 * @return the id
 	 */
@@ -82,27 +74,15 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/**
-	 * @return the color
-	 */
-	public String getColor() {
-		return color;
-	}
-	/**
-	 * @param color the color to set
-	 */
-	public void setColor(String color) {
-		this.color = color;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", color=" + color + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, email, id, name);
+		return Objects.hash(email, id, name);
 	}
 
 	@Override
@@ -114,7 +94,7 @@ public class User {
 			return false;
 		}
 		User other = (User) obj;
-		return Objects.equals(color, other.color) && Objects.equals(email, other.email) && id == other.id
+		return Objects.equals(email, other.email) && id == other.id
 				&& Objects.equals(name, other.name);
 	}
 	

@@ -27,13 +27,13 @@ public class UserDao {
     		System.out.println("Here we are...");
     		
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO ftt.USER (NAME, EMAIL, COLOR) VALUES (?, ?, ?)");
+                    .prepareStatement("INSERT INTO ftt.USER (NAME, EMAIL, COLOR) VALUES (?, ?)");
             
             // Parameters start with 1
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             //preparedStatement.setDate(3, (java.sql.Date)user.getDob());
-            preparedStatement.setString(3, user.getColor());
+            //preparedStatement.setString(3, user.getColor());
 
             
             preparedStatement.executeUpdate();
@@ -78,8 +78,7 @@ public class UserDao {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("UPDATE ftt.USER SET NAME=?, " 
-                    		                          + "EMAIL=?, " 
-                    		                          + "COLOR=? " 
+                    		                          + "EMAIL=?, "  
                                                + "WHERE ID=?");
             
             /*
@@ -99,9 +98,9 @@ public class UserDao {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             //preparedStatement.setDate(3, (java.sql.Date)user.getDob());
-            preparedStatement.setString(3, user.getColor());
+            //preparedStatement.setString(3, user.getColor());
             
-            preparedStatement.setLong(4, user.getId());
+            preparedStatement.setLong(3, user.getId());
             
             preparedStatement.executeUpdate();
 
@@ -125,7 +124,7 @@ public class UserDao {
                 user.setName(rs.getString("NAME"));
                 user.setEmail(rs.getString("EMAIL"));
                 //user.setDob(rs.getDate("DOB"));
-                user.setColor(rs.getString("COLOR"));
+                //user.setColor(rs.getString("COLOR"));
 
                 userList.add(user);
             }
@@ -163,7 +162,7 @@ public class UserDao {
             	userOutput.setName(rs.getString("NAME"));
             	userOutput.setEmail(rs.getString("EMAIL"));
             	//userOutput.setDob(rs.getDate("DOB"));
-            	userOutput.setColor(rs.getString("COLOR"));
+            	//userOutput.setColor(rs.getString("COLOR"));
 
             }
         } catch (SQLException e) {
