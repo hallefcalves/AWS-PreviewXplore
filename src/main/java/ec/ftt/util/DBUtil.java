@@ -31,10 +31,10 @@ public class DBUtil {
                 */
                 
             	//jdbc:mysql://localhost:3306/?user=root"
-                String driver = "com.mysql.jdbc.Driver";
+                String driver = "com.mysql.cj.jdbc.Driver";
                 String url = "jdbc:mysql://127.0.0.1:3306";
-                String user = "root"; //"scott";
-                String password = "password";//"@@T1ger!"; //"UFLg@9!wytje8NjR"; System.getenv("FTT_PWD");
+                String user = "avakin"; //"scott";
+                String password = "crystal";//"@@T1ger!"; //"UFLg@9!wytje8NjR"; System.getenv("FTT_PWD");
                 
                 Class.forName(driver);
                 

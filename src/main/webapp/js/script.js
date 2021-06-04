@@ -20,6 +20,19 @@ const deleteMovie = (id) => {
 
 }
 
+const trailer = (id,nome) => {
+  console.log(id)
+  const request = new XMLHttpRequest();
+  const url = "/FTT-WEB-091/trailer?trailer-id=" + id
+  request.open("GET", url, true);
+  request.send();
+  request.onload = function () {
+  	window.localStorage.setItem("trailerName", nome);
+    window.location.href = "trailer.html";
+  }
+}
+
+let trailerName = {}
 let localMovie = {}
 
 const updateMovie = (id) => {
@@ -49,8 +62,6 @@ const updateGame = (id) => {
     window.localStorage.setItem('localGame', this.responseText);
     window.location.href = "update-game.html";
   }
-  
-
 }
 
 const request = new XMLHttpRequest();
@@ -79,6 +90,7 @@ request.onload = function () {
     releaseDate.innerHTML = line.releaseDate;
     row.appendChild(releaseDate);
     var action = document.createElement("td");
+
     var d = document.createElement("button")
     d.innerHTML = "Apagar"
     d.classList.add("btn-danger");
@@ -98,6 +110,17 @@ request.onload = function () {
       updateGame(line.id)
     })
     action.appendChild(u)
+
+    var t = document.createElement("button")
+    t.innerHTML = "Trailer"
+    t.classList.add("btn");
+    console.log(line.name)
+    t.addEventListener("click", function(){
+      console.log("trailer")
+      trailer(line.id,line.name)
+    })
+    action.appendChild(t)
+
     row.appendChild(action)
     table.appendChild(row);
   }
@@ -155,6 +178,17 @@ requestMovie.onload = function () {
       updateMovie(line.id)
     })
     action.appendChild(u)
+
+    var t = document.createElement("button")
+    t.innerHTML = "Trailer"
+    t.classList.add("btn");
+    window.localStorage.setItem("trailerName", line.name);
+    t.addEventListener("click", function(){
+      console.log("trailer")
+      trailer(line.id)
+    })
+    action.appendChild(t)
+
     row.appendChild(action)
 
     table.appendChild(row);
