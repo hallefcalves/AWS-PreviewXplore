@@ -113,6 +113,7 @@ request.onload = function () {
 
     var t = document.createElement("button")
     t.innerHTML = "Trailer"
+    t.classList.add("btn-info");
     t.classList.add("btn");
     console.log(line.name)
     t.addEventListener("click", function(){
@@ -179,13 +180,14 @@ requestMovie.onload = function () {
     })
     action.appendChild(u)
 
-    var t = document.createElement("button")
+        var t = document.createElement("button")
     t.innerHTML = "Trailer"
+    t.classList.add("btn-info");
     t.classList.add("btn");
-    window.localStorage.setItem("trailerName", line.name);
+    console.log(line.name)
     t.addEventListener("click", function(){
       console.log("trailer")
-      trailer(line.id)
+      trailer(line.id,line.name)
     })
     action.appendChild(t)
 
