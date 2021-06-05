@@ -30,7 +30,7 @@ public class GameApi extends HttpServlet  {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setStatus(418);
+	
 
 		String gameId = request.getParameter("game-id");
 

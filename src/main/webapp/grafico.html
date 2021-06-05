@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Charts</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/chartss.js" type="text/javascript"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+	<script>
+		const request = new XMLHttpRequest();
+		request.open("GET", "/FTT-WEB-091/game");
+  
+		request.onload = function () {
+ 
+		  const response = JSON.parse(this.responseText);
+		  console.log(JSON.parse(this.responseText));
+		  var qtd1 = 0;
+		  var qtd2 = 0;
+		  var qtd3 = 0;
+		  for(let line of response){
+			qtd1= qtd1+1;
+			qtd2= qtd2+1;
+			qtd3= qtd3+1;
+		}
+			var ctx = document.getElementById('myGameChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ['Sad', 'Happy', 'Confused'],
+					datasets: [{
+						label: '# de Info',
+						data: [qtd1, qtd2, qtd3],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
+		  
+		};
+  
+		request.onerror = function () {
+		  alert("erro ao executar a requisição");
+		};
+  
+		request.send();
+		
+		chartFilme();
+		
+		function chartFilme(){
+
+			const request = new XMLHttpRequest();
+			request.open("GET", "/FTT-WEB-091/movie");
+	  
+			request.onload = function () {
+	 
+			  const response = JSON.parse(this.responseText);
+			  console.log(JSON.parse(this.responseText));
+			  var lbls=[];
+			
+			  for(let line of response){
+				  var achou = 0;
+				  for(let lbl of lbls){
+					 
+					  if(lbl[0]==line.genre){
+						  
+						  lbl[1]=lbl[1]+line.movieDuration;
+						  
+						  achou = 1;
+					  }
+				  }
+				  if(achou == 0){
+					  lbls.push(new Array(3));
+					  var tam = lbls.length;
+					  lbls[lbls.length-1][0] = line.genre;
+					  lbls[lbls.length-1][1] = line.movieDuration;
+					  lbls[lbls.length-1][2] = 'rgba('+255/(Math.pow(tam,2))+', '+99/tam+', '+132/tam+', '+'1.0)';
+				  
+				  }
+			}
+			  var cor =[];
+			  var lab = [];
+			  var dados = [];
+			  
+			  for(let lbl of lbls){
+				  lab.push(lbl[0]);
+				  dados.push(lbl[1]);
+				  cor.push(lbl[2]);
+			  }
+			  console.log(cor);
+
+			  console.log(lab);
+
+			  console.log(dados);
+				var ctx = document.getElementById('myMovieChart').getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: lab,
+						datasets: [{
+							label: '# de Info',
+							data: dados,
+							backgroundColor: cor,
+							borderColor: cor,
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							y: {
+								beginAtZero: true
+							}
+						}
+					}
+				});
+			  
+			};
+	  
+			request.onerror = function () {
+			  alert("erro ao executar a requisição");
+			};
+	  
+			request.send();
+		}
+		
+	  </script>
+</head>
+<body >
+	<header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="game.html">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="movie.html">Filmes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="grafico.html">Graficos</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Game')">Jogos</button>
+  <button class="tablinks" onclick="openTab(event, 'Movie')">Filmes</button>
+</div>
+
+<!-- Tab content -->
+<div id="Game" class="tabcontent">
+  
+ <canvas id="myGameChart" width="400" height="400"></canvas>
+</div>
+
+<div id="Movie" class="tabcontent">
+
+ <canvas id="myMovieChart" width="400" height="400"></canvas>
+
+</div>
+<script></script>
+
+	
+<script>
+
+</script>
+</body>
+</html>

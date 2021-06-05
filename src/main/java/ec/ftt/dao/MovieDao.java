@@ -26,14 +26,14 @@ public class MovieDao {
 
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("INSERT INTO ftt.MOVIE (NAME, PRODUCER, GENRE, RELEASE_DATE) VALUES (?, ?, ?,?)");
+					.prepareStatement("INSERT INTO ftt.MOVIE (NAME, PRODUCER, GENRE, RELEASE_DATE, DURATION) VALUES (?, ?, ?,?, ?)");
 
 
 			preparedStatement.setString(1, movie.getName());
 			preparedStatement.setString(2, movie.getProducer());
 			preparedStatement.setString(3, movie.getGenre());
 			preparedStatement.setString(4, movie.getReleaseDate());
-
+			preparedStatement.setInt(5, movie.getMovieDuration());
 
 			preparedStatement.executeUpdate();
 
@@ -63,15 +63,17 @@ public class MovieDao {
 					.prepareStatement("UPDATE ftt.MOVIE SET NAME=?, " 
 							+ "PRODUCER=?, " 
 							+ "GENRE=?, " 
-							+ "RELEASE_DATE=? " 
+							+ "RELEASE_DATE=?, " 
+							+ "DURATION=? " 
 							+ "WHERE ID=?");
 
 			preparedStatement.setString(1, movie.getName());
 			preparedStatement.setString(2, movie.getProducer());
 			preparedStatement.setString(3, movie.getGenre());
 			preparedStatement.setString(4, movie.getReleaseDate());
-
-			preparedStatement.setLong(5, movie.getId());
+			preparedStatement.setInt(5, movie.getMovieDuration());
+			
+			preparedStatement.setLong(6, movie.getId());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 
@@ -96,7 +98,8 @@ public class MovieDao {
 				movie.setProducer(rs.getString("PRODUCER"));
 				movie.setGenre(rs.getString("GENRE"));
 				movie.setReleaseDate(rs.getString("RELEASE_DATE"));
-
+				movie.setMovieDuration(rs.getInt("DURATION"));
+				
 				movieList.add(movie);
 			}
 		} catch (SQLException e) {
@@ -127,14 +130,14 @@ public class MovieDao {
 				movieOutput.setProducer(rs.getString("PRODUCER"));
 				movieOutput.setGenre(rs.getString("GENRE"));
 				movieOutput.setReleaseDate(rs.getString("RELEASE_DATE"));
-
+				movieOutput.setMovieDuration(rs.getInt("DURATION"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return movieOutput;
-	} //getUserById
+	} 
 
 	public String getDbDate() {
 

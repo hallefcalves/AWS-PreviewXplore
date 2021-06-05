@@ -7,25 +7,35 @@ public class Movie {
 	private String producer;
 	private String genre;
 	private String releaseDate;
+	private int movieDuration;
 	public Movie() {
 
 	}
-	public Movie(Long id, String name, String producer, String genre, String releaseDate) {
+	public Movie(Long id, String name, String producer, String genre, String releaseDate, int movieDuration) {
 		super();
 		setId(id);
 		setName(name);
 		setProducer(producer);
 		setGenre(genre);
 		setReleaseDate(releaseDate);
+		setMovieDuration(movieDuration);
 	}
-	public Movie(String name, String producer, String genre, String releaseDate) {
+	public Movie(String name, String producer, String genre, String releaseDate, int movieDuration) {
 		super();
 		setName(name);
 		setProducer(producer);
 		setGenre(genre);
 		setReleaseDate(releaseDate);
+		setMovieDuration(movieDuration);
 	}
 
+	public int getMovieDuration() {
+		return movieDuration;
+	}
+	public void setMovieDuration(int movieDuration) {
+		this.movieDuration = movieDuration;
+	}
+	
 	public long getId() {
 		return id;
 	}

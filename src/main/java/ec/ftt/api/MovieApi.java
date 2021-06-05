@@ -30,7 +30,7 @@ public class MovieApi extends HttpServlet  {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setStatus(418);
+	
 
 		String movieId = request.getParameter("movie-id");
 
@@ -63,7 +63,8 @@ public class MovieApi extends HttpServlet  {
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),
-				request.getParameter("movie-releaseDate")
+				request.getParameter("movie-releaseDate"),
+				Integer.parseInt(request.getParameter("movie-duration"))
 				);
 		MovieDao movieDao = new MovieDao();
 
@@ -81,7 +82,8 @@ public class MovieApi extends HttpServlet  {
 				request.getParameter("movie-name"),
 				request.getParameter("movie-producer"),
 				request.getParameter("movie-genre"),
-				request.getParameter("movie-releaseDate")
+				request.getParameter("movie-releaseDate"),
+				Integer.parseInt(request.getParameter("movie-duration"))
 				);
 		MovieDao movieDao = new MovieDao();
 
@@ -97,7 +99,7 @@ public class MovieApi extends HttpServlet  {
 		
 
 		if (request.getParameter("movie-id") == null)
-			response.sendError(407, "Informe o ID do usu√°rio a ser retornado!!!" );
+			response.sendError(407, "Informe o ID do usu·rio a ser retornado!!!" );
 		else {
 			Long movieId = Long.valueOf(request.getParameter("movie-id"));
 			System.out.println(movieId);

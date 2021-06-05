@@ -13,10 +13,13 @@ const genre = document.querySelector("#movie-genre");
 genre.value = localMovie.genre
 const releaseDate = document.querySelector("#movie-releaseDate");
 releaseDate.value = localMovie.releaseDate
+const duration = document.querySelector("#movie-duration");
+duration.value = localMovie.movieDuration
+
 
 const updateMovie = () => {
     const request = new XMLHttpRequest();
-    const url = "/FTT-WEB-091/movie?movie-name=" + movieName.value + "&movie-producer=" + producer.value + "&movie-genre=" + genre.value + "&movie-releaseDate=" + releaseDate.value + "&movie-id=" + id.value;
+    const url = "/FTT-WEB-091/movie?movie-name=" + movieName.value + "&movie-producer=" + producer.value + "&movie-genre=" + genre.value + "&movie-releaseDate=" + releaseDate.value + "&movie-id=" + id.value + "&movie-duration=" + duration.value;
     request.open("PUT", url, true);
     request.send();
     request.onload = function () {

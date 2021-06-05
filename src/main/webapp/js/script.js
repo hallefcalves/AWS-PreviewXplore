@@ -69,6 +69,7 @@ request.onload = function () {
     var name = document.createElement("td");
     name.innerHTML = line.name;
     row.appendChild(name);
+    
     var producer = document.createElement("td");
     producer.innerHTML = line.producer;
     row.appendChild(producer);
