@@ -20,6 +20,19 @@ const deleteMovie = (id) => {
 
 }
 
+const trailer = (id,nome) => {
+  console.log(id)
+  const request = new XMLHttpRequest();
+  const url = "/FTT-WEB-091/trailer?trailer-id=" + id
+  request.open("GET", url, true);
+  request.send();
+  request.onload = function () {
+  	window.localStorage.setItem("trailerName", nome);
+    window.location.href = "trailer.html";
+  }
+}
+
+let trailerName = {}
 let localMovie = {}
 
 const updateMovie = (id) => {
@@ -99,6 +112,18 @@ request.onload = function () {
       updateGame(line.id)
     })
     action.appendChild(u)
+
+    var t = document.createElement("button")
+    t.innerHTML = "Trailer"
+    t.classList.add("btn-info");
+    t.classList.add("btn");
+    console.log(line.name)
+    t.addEventListener("click", function(){
+      console.log("trailer")
+      trailer(line.id,line.name)
+    })
+    action.appendChild(t)
+
     row.appendChild(action)
     table.appendChild(row);
   }
@@ -156,6 +181,18 @@ requestMovie.onload = function () {
       updateMovie(line.id)
     })
     action.appendChild(u)
+
+        var t = document.createElement("button")
+    t.innerHTML = "Trailer"
+    t.classList.add("btn-info");
+    t.classList.add("btn");
+    console.log(line.name)
+    t.addEventListener("click", function(){
+      console.log("trailer")
+      trailer(line.id,line.name)
+    })
+    action.appendChild(t)
+
     row.appendChild(action)
 
     table.appendChild(row);

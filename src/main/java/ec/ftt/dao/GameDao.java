@@ -26,8 +26,7 @@ public class GameDao {
 
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("INSERT INTO ftt.GAME (NAME, PRODUCER, GENRE, RELEASE_DATE) VALUES (?, ?, ?,?)");
-
+					.prepareStatement("INSERT INTO ftt.GAME (NAME, PRODUCER, GENRE, RELEASE_DATE) VALUES (?, ?, ?, ?)");
 
 			preparedStatement.setString(1, game.getName());
 			preparedStatement.setString(2, game.getProducer());
