@@ -24,44 +24,66 @@
 		request.open("GET", "/FTT-WEB-091/game");
   
 		request.onload = function () {
- 
-		  const response = JSON.parse(this.responseText);
-		  console.log(JSON.parse(this.responseText));
-		  var qtd1 = 0;
-		  var qtd2 = 0;
-		  var qtd3 = 0;
-		  for(let line of response){
-			qtd1= qtd1+1;
-			qtd2= qtd2+1;
-			qtd3= qtd3+1;
-		}
+			 
+			  const response = JSON.parse(this.responseText);
+			  console.log(JSON.parse(this.responseText));
+			  var lbls=[];
+			
+			  for(let line of response){
+				  var achou = 0;
+				  for(let lbl of lbls){
+					 
+					  if(lbl[0]==line.genre){
+						  
+						  lbl[1]=lbl[1]+1;
+						  
+						  achou = 1;
+					  }
+				  }
+				  if(achou == 0){
+					  lbls.push(new Array(3));
+					  var tam = lbls.length;
+					  lbls[lbls.length-1][0] = line.genre;
+					  lbls[lbls.length-1][1] = 1;
+					  lbls[lbls.length-1][2] = 'rgba('+(Math.pow(tam,3))%255+', '+(40+255/tam)%255+', '+80*tam%255+', '+'1.0)';
+				  
+				  }
+			}
+			  var cor =[];
+			  var lab = [];
+			  var dados = [];
+			  
+			  for(let lbl of lbls){
+				  lab.push(lbl[0]);
+				  dados.push(lbl[1]);
+				  cor.push(lbl[2]);
+			  }
+			  console.log(cor);
+
+			  console.log(lab);
+
+			  console.log(dados);
+			  
 			var ctx = document.getElementById('myGameChart').getContext('2d');
 			var myChart = new Chart(ctx, {
-				type: 'bar',
+				type: 'pie',
 				data: {
-					labels: ['Sad', 'Happy', 'Confused'],
+					labels: lab,
 					datasets: [{
-						label: '# de Info',
-						data: [qtd1, qtd2, qtd3],
-						backgroundColor: [
-							'rgba(255, 99, 132, 0.2)',
-							'rgba(54, 162, 235, 0.2)',
-							'rgba(255, 206, 86, 0.2)'
-						],
-						borderColor: [
-							'rgba(255, 99, 132, 1)',
-							'rgba(54, 162, 235, 1)',
-							'rgba(255, 206, 86, 1)'
-						],
+						label: '',
+						data: dados,
+						backgroundColor: cor,
+						borderColor: cor,
 						borderWidth: 1
 					}]
 				},
 				options: {
-					scales: {
-						y: {
-							beginAtZero: true
-						}
-					}
+					plugins: {
+			            title: {
+			                display: true,
+			                text: 'Número de jogos cadastrados, por gênero'
+			            }
+			        }
 				}
 			});
 		  
@@ -93,17 +115,17 @@
 					  if(lbl[0]==line.genre){
 						  
 						  lbl[1]=lbl[1]+line.movieDuration;
-						  
+						  lbl[4] = lbl[4]+1;
 						  achou = 1;
 					  }
 				  }
 				  if(achou == 0){
-					  lbls.push(new Array(3));
+					  lbls.push(new Array(4));
 					  var tam = lbls.length;
 					  lbls[lbls.length-1][0] = line.genre;
 					  lbls[lbls.length-1][1] = line.movieDuration;
 					  lbls[lbls.length-1][2] = 'rgba('+255/(Math.pow(tam,2))+', '+99/tam+', '+132/tam+', '+'1.0)';
-				  
+					  lbls[lbls.length-1][4] = 1;
 				  }
 			}
 			  var cor =[];
@@ -112,13 +134,13 @@
 			  
 			  for(let lbl of lbls){
 				  lab.push(lbl[0]);
-				  dados.push(lbl[1]);
+				  dados.push(lbl[1]/lbl[4]);
 				  cor.push(lbl[2]);
 			  }
 			  console.log(cor);
 
 			  console.log(lab);
-
+			  //Chart.defaults.global.legend.display = false;
 			  console.log(dados);
 				var ctx = document.getElementById('myMovieChart').getContext('2d');
 				var myChart = new Chart(ctx, {
@@ -126,7 +148,7 @@
 					data: {
 						labels: lab,
 						datasets: [{
-							label: '# de Info',
+							label: "",
 							data: dados,
 							backgroundColor: cor,
 							borderColor: cor,
@@ -134,12 +156,17 @@
 						}]
 					},
 					options: {
-						scales: {
-							y: {
-								beginAtZero: true
-							}
-						}
-					}
+						plugins: {
+							legend: {
+					            display: false
+					        },
+				            title: {
+				                display: true,
+				                text: 'Duração média em minutos de filmes cadastrados, por gênero'
+				            }
+				        }
+				    }
+					
 				});
 			  
 			};
@@ -193,12 +220,16 @@
 <!-- Tab content -->
 <div id="Game" class="tabcontent">
   
- <canvas id="myGameChart" width="400" height="400"></canvas>
+<div>
+ <canvas class="divChart" id="myGameChart"></canvas>
+</div>
+
 </div>
 
 <div id="Movie" class="tabcontent">
-
- <canvas id="myMovieChart" width="400" height="400"></canvas>
+<div class="divChart">
+ <canvas class="divChart" id="myMovieChart"></canvas>
+</div>
 
 </div>
 <script></script>
