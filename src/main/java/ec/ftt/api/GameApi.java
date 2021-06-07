@@ -59,7 +59,9 @@ public class GameApi extends HttpServlet  {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		Game u = new Game(
 				request.getParameter("game-name"),
 				request.getParameter("game-producer"),
@@ -74,7 +76,7 @@ public class GameApi extends HttpServlet  {
 		
 		gameDao.addGame(u);
 
-		response.sendRedirect("index.html");
+		response.sendRedirect("list-games.html");
 
 	}
 

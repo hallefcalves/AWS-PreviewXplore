@@ -24,7 +24,7 @@ const updateMovie = () => {
     request.send();
     request.onload = function () {
         window.localStorage.setItem('localMovie', "");
-        window.location.href = "index.html";
+        window.location.href = "list-movies.html";
     }
 
 }

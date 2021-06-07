@@ -22,7 +22,7 @@ const updateGame = () => {
     request.send();
     request.onload = function () {
         window.localStorage.setItem('localGame', "");
-        window.location.href = "index.html";
+        window.location.href = "list-games.html";
     }
 
 }
