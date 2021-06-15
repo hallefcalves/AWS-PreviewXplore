@@ -1,5 +1,7 @@
 # LP3-n2-B2
 
+Versão modificada para AWS.
+
 Cadastro de Filmes e Jogos, e associados aos seus trailers, com uso da api do YouTube
 
 Arthur RA: 081180004 </br>
