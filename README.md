@@ -1,4 +1,4 @@
-# LP3-n2-B2
+# PreviewXPlore
 
 Versão modificada para AWS - http://54.232.215.134/FTT-WEB-091/
 
