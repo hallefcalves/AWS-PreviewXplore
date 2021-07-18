@@ -1,5 +1,4 @@
 const deleteGame = (id) => {
-  console.log(id)
   const request = new XMLHttpRequest();
   const url = "/FTT-WEB-091/game?game-id=" + id
   request.open("DELETE", url, true);
@@ -9,7 +8,6 @@ const deleteGame = (id) => {
   }
 }
 const deleteMovie = (id) => {
-  console.log(id)
   const request = new XMLHttpRequest();
   const url = "/FTT-WEB-091/movie?movie-id=" + id
   request.open("DELETE", url, true);
@@ -21,7 +19,6 @@ const deleteMovie = (id) => {
 }
 
 const trailer = (id,nome) => {
-  console.log(id)
   const request = new XMLHttpRequest();
   const url = "/FTT-WEB-091/trailer?trailer-id=" + id
   request.open("GET", url, true);
@@ -36,7 +33,6 @@ let trailerName = {}
 let localMovie = {}
 
 const updateMovie = (id) => {
-  console.log(id)
   const request = new XMLHttpRequest();
   const url = "/FTT-WEB-091/movie?movie-id=" + id
   request.open("GET", url, true);
@@ -52,13 +48,11 @@ const updateMovie = (id) => {
 let localGame = {}
 
 const updateGame = (id) => {
-  console.log(id)
   const request = new XMLHttpRequest();
   const url = "/FTT-WEB-091/game?game-id=" + id
   request.open("GET", url, true);
   request.send();
   request.onload = function () {
-    console.log(this.responseText)
     window.localStorage.setItem('localGame', this.responseText);
     window.location.href = "update-game.html";
   }
@@ -72,7 +66,6 @@ function listaJogos(){
 	
 	request.onload = function () {
   const response = JSON.parse(this.responseText);
-  console.log(JSON.parse(this.responseText));
 
   const table = document.querySelector(".table-game");
   for (let line of response) {
@@ -99,7 +92,6 @@ function listaJogos(){
     d.classList.add("btn-danger");
     d.classList.add("btn");
     d.addEventListener("click", function () {
-      console.log("delete")
       deleteGame(line.id)
     })
     action.appendChild(d)
@@ -109,7 +101,6 @@ function listaJogos(){
     u.classList.add("btn-warning");
     u.classList.add("btn");
     u.addEventListener("click", function () {
-      console.log("update")
       updateGame(line.id)
     })
     action.appendChild(u)
@@ -118,9 +109,7 @@ function listaJogos(){
     t.innerHTML = "Trailer"
     t.classList.add("btn-info");
     t.classList.add("btn");
-    console.log(line.name)
     t.addEventListener("click", function(){
-      console.log("trailer")
       trailer(line.id,line.name)
     })
     action.appendChild(t)
@@ -128,7 +117,6 @@ function listaJogos(){
     row.appendChild(action)
     table.appendChild(row);
 	  }
-	  console.log(table)
 	};
 	
 	request.onerror = function () {
@@ -145,7 +133,6 @@ function listaFilmes(){
 	
 	requestMovie.onload = function () {
 	  const response = JSON.parse(this.responseText);
-	  console.log(JSON.parse(this.responseText));
 	
 	  const table = document.querySelector(".table-movie");
 	  for (let line of response) {
@@ -171,7 +158,6 @@ function listaFilmes(){
 	    d.classList.add("btn-danger");
 	    d.classList.add("btn");
 	    d.addEventListener("click", function () {
-	      console.log("delete")
 	      deleteMovie(line.id)
 	    })
 	    action.appendChild(d)
@@ -181,7 +167,6 @@ function listaFilmes(){
 	    u.classList.add("btn-warning");
 	    u.classList.add("btn");
 	    u.addEventListener("click", function () {
-	      console.log("update")
 	      updateMovie(line.id)
 	    })
 	    action.appendChild(u)
@@ -190,9 +175,7 @@ function listaFilmes(){
 	    t.innerHTML = "Trailer"
 	    t.classList.add("btn-info");
 	    t.classList.add("btn");
-	    console.log(line.name)
 	    t.addEventListener("click", function(){
-	      console.log("trailer")
 	      trailer(line.id,line.name)
 	    })
 	    action.appendChild(t)
@@ -201,7 +184,6 @@ function listaFilmes(){
 	
 	    table.appendChild(row);
 	  }
-	  console.log(table)
 	};
 	
 	requestMovie.onerror = function () {

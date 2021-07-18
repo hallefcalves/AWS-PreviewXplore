@@ -32,7 +32,7 @@ public class DBUtil {
                 
             	//jdbc:mysql://localhost:3306/?user=root"
                 String driver = "com.mysql.jdbc.Driver";
-                String url = "jdbc:mysql://localhost:3306";
+                String url = "jdbc:mysql://database-1.cx5rrhdqsaif.sa-east-1.rds.amazonaws.com:3306";
                 String user = "preview"; //"scott";
                 String password = "AvakinMaels10";//"@@T1ger!"; //"UFLg@9!wytje8NjR"; System.getenv("FTT_PWD");
                 
