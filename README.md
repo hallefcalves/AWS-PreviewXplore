@@ -1,6 +1,6 @@
 # LP3-n2-B2
 
-Versão modificada para AWS - http://ec2-54-233-132-133.sa-east-1.compute.amazonaws.com:8080/FTT-WEB-091/
+Versão modificada para AWS - http://54.232.215.134/FTT-WEB-091/
 
 Cadastro de Filmes e Jogos, e associados aos seus trailers, com uso da api do YouTube
 
